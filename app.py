@@ -1,11 +1,11 @@
 import streamlit as st
 from fastai.vision.all import *
-import plotly.express as plt
+import plotly.express as px
 import pathlib
 import platform
 
-ptm = platform.system()
-if ptm == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
+plt = platform.system()
+if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 st.title('Transportni klassifikatsiya qiluvchi model')
 
@@ -20,5 +20,5 @@ if file:
     pred, pred_id, probs = model.predict(img)
     st.success(f"Bashorat: {pred}")
     st.info(f'Ehtimollik: {probs[pred_id]*100:.1f}')
-    fig = plt.bar(x=probs*100, y=model.dls.vocab)
+    fig = px.bar(x=probs*100, y=model.dls.vocab)
     st.plotly_chart(fig)
