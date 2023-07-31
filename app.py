@@ -2,9 +2,10 @@ import streamlit as st
 from fastai.vision.all import *
 import plotly.express as plt
 import pathlib
+import platform
 
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+plt = platform.system()
+if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
 
 st.title('Transportni klassifikatsiya qiluvchi model')
 
